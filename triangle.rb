@@ -14,6 +14,18 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
+  if (a==0) && (b==0) && (c==0)
+    raise TriangleError, "Triangle sides cannot be 0"
+  end
+  if (a < 0) || (b < 0) || (c < 0)
+    raise TriangleError, "Triangle sides cannot be less than 0"
+  end
+  if (a+b < c) || (a+c < b) || (b+c < a)
+    raise TriangleError, "Two sides of a triangle should add up to more than the third side"
+  end
+  if (a+b <= c) || (a+c <= b) || (b+c <= a)
+    raise TriangleError, "Two sides of a triangle should add up to more than the third side"
+  end
   if (a==b) && (a==c) 
     return :equilateral
   end
@@ -22,9 +34,6 @@ def triangle(a, b, c)
   end
   if (a!=b) && (a!=c) && (b!=c)
     return :scalene
-  end
-  if (a==0) && (b==0) && (c==0)
-    raise TriangleError, "Triangle sizes cannot be 0"
   end
 end
 
