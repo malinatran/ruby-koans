@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   points = 0
-  set_of_threes = dice.detect { |num| dice.count(num) == 3 }
+  set_of_threes = dice.detect { |num| dice.count(num) >= 3 }
 
   if set_of_threes != nil
     if set_of_threes == 1
@@ -10,17 +10,20 @@ def score(dice)
     else 
       points += set_of_threes * 100
     end
-    dice.delete(set_of_threes)
-  end
 
-  delete_array = []
-  i = 0
-  while delete_array.length < 3 do
-    if a[i] == duplicate
-      delete_arrya.push(a[i])
+    delete_array = []
+    i = 0
+    while delete_array.length < 3 do
+      if dice[i] == set_of_threes 
+        delete_array << dice[i]
+      end
+      i += 1
+    end  
+
+    delete_array.each do |num|
+      dice.delete_at dice.index(num)
     end
-    i += 1
-  end  
+  end
 
   counts = {}
   dice.each do |die|
